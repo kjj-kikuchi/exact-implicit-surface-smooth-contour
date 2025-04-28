@@ -23,15 +23,13 @@ inline void export_curve_inc(Curve const& curve,
     for (auto const& line_segment : curve.L)
     {
         of << "sphere_sweep {\n  linear_spline,\n";
-        of << "  " << num_segments + 1 << ",\n";
+        of << "  " << NUM_SEGMENTS + 1 << ",\n";
 
-        for (int j = 0; j < num_segments; j++)
-//        for (auto const& l : line_segment)
+        for (int j = 0; j < NUM_SEGMENTS; j++)
         {
             Eigen::Vector3d p = curve.P[line_segment[j](0)];
-//            Eigen::Vector3d p = curve.P[l(0)];
             of << "<" << p(0) << ", " << p(1) << ", " << p(2) << ">, " << "0.004\n";
-            if (j == num_segments - 1)
+            if (j == NUM_SEGMENTS - 1)
             {
                 p = curve.P[line_segment[j](0) + 1];
                 of << "<" << p(0) << ", " << p(1) << ", " << p(2) << ">, " << "0.004\n";
@@ -261,7 +259,7 @@ inline void export_file(Eigen::MatrixXd const& P,
 inline void export_tet_file(Eigen::MatrixXi const& tet)
 {
     std::ofstream of;
-    std::string filename = "/Users/kikuchiyusaku/kjj/piecewise-quadraic-implicit-surface/tet.txt";
+    std::string filename = "./tet.txt";
     of.open(filename, std::ios::out);
     of << tet << std::endl;
     of.close();
@@ -270,7 +268,7 @@ inline void export_tet_file(Eigen::MatrixXi const& tet)
 inline void export_tet(std::vector<Eigen::Vector3d> const& points, std::string name)
 {
     std::ofstream of;
-    std::string filename = "/Users/kikuchiyusaku/kjj/piecewise-quadraic-implicit-surface/tetra_" + name + ".obj";
+    std::string filename = "./tetra_" + name + ".obj";
     of.open(filename, std::ios::out);
     for(auto const& p : points)
     {

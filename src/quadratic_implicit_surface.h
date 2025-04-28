@@ -22,8 +22,7 @@ inline void compute_implicit_surface(Eigen::MatrixXd const& P,
 {
     // 四面体内の陰関数の係数を計算
     implicit_surfaces.resize(Tet.rows());
-    for (int i = 0; i < Tet.rows(); i++)
-    {
+    for (int i = 0; i < Tet.rows(); i++) {
         Eigen::Matrix<double, 10, 10> Mat;
         Eigen::Vector<double, 10> func_value;
         for (int j = 0; j < 4; j++)
@@ -165,4 +164,5 @@ inline void get_signed_distance(Eigen::MatrixXd const& P,
     Eigen::MatrixXd N;
     igl::signed_distance(P, V, F, igl::SIGNED_DISTANCE_TYPE_FAST_WINDING_NUMBER, S, I, C, N);
 }
+
 #endif /* quadratic_implicit_surface_h */

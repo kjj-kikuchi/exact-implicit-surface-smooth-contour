@@ -73,7 +73,7 @@ struct RationalParametricCurve2
     }
 };
 
-// 2Dから3Dに持ち上げる
+
 inline RationalParametricCurve3 lifting(RationalParametricCurve2 const& r2,
                                         BivariateLinear const& removed_term,
                                         int const& rt_idx)
@@ -84,20 +84,17 @@ inline RationalParametricCurve3 lifting(RationalParametricCurve2 const& r2,
     removed_term.coeffs(0) * r2.numer_x.coeffs +
     removed_term.coeffs(1) * r2.numer_y.coeffs +
     removed_term.coeffs(2) * r2.denom.coeffs;
-    if (rt_idx == 2)
-    {
+    if (rt_idx == 2) {
         result.numer_x.coeffs = r2.numer_x.coeffs;
         result.numer_y.coeffs = r2.numer_y.coeffs;
         result.numer_z.coeffs = lifting_coordinate.coeffs;
     }
-    if (rt_idx == 1)
-    {
+    if (rt_idx == 1) {
         result.numer_x.coeffs = r2.numer_y.coeffs;
         result.numer_y.coeffs = lifting_coordinate.coeffs;
         result.numer_z.coeffs = r2.numer_x.coeffs;
     }
-    if (rt_idx == 0)
-    {
+    if (rt_idx == 0) {
         result.numer_x.coeffs = lifting_coordinate.coeffs;
         result.numer_y.coeffs = r2.numer_x.coeffs;
         result.numer_z.coeffs = r2.numer_y.coeffs;

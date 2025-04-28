@@ -13,17 +13,13 @@
 
 int main(int argc, const char * argv[])
 {
-    if (argc != 2)
-    {
+    if (argc != 2) {
         std::cout << "wrong command line argument" << std::endl;
         std::exit(1);
     }
     Eigen::Vector3d camera;
-    camera << 0, 0.5, 1.5;
-//    camera << 2, 2, 2;
-//    camera << 1, -2, 0;
-//    camera << -1, -1, -1;
-//    camera << -1, 1, 1;
+//    camera << 0, 0.5, 1.5;
+    camera << -0.5, 0.5, -1;
     double cell_resolution = 0.02;
     int projection_method = 1;  // orthographic : 0, perspective : 1
 
@@ -97,13 +93,6 @@ int main(int argc, const char * argv[])
 
 //    auto start_contour = std::chrono::system_clock::now();
 //    test(P, Tet, implicit_surface, camera, projection_method, bezier_coeffs, curve2);
-//
-//    auto end_contour = std::chrono::system_clock::now();
-
-
-//    auto end = std::chrono::system_clock::now();
-
-
 
 
 
@@ -154,59 +143,6 @@ int main(int argc, const char * argv[])
     std::cout << "Tet " << Tet.rows() << std::endl;
     std::cout << "Execute time:\n";
     std::cout << "Compute contour : " << (end_contour - start_contour) / 1.0s << " s\n";
-//    std::cout << "Compute : " << (end - start) / 1.0s << " s\n";
 
     return 0;
 }
-
-
-
-
-
-
-
-//    // 主グリッドのSDF
-//    Eigen::MatrixXd primeP = P.block(0, 0, n(0)*n(1)*n(2), 3);
-//    Eigen::VectorXd primeS = GS.head(n(0)*n(1)*n(2));
-//    export_file(primeP, primeS, n, cell_size, meshname + "primeP");
-//    // 双対グリッドのSDF
-//    Eigen::MatrixXd dualP = P.block(n(0)*n(1)*n(2), 0, n(0)*n(1)*n(2), 3);
-//    Eigen::VectorXd dualS = GS.tail(n(0)*n(1)*n(2));
-//    export_file(dualP, dualS, n, cell_size, meshname + "dualP");
-
-
-
-
-
-//    // 陰関数のテスト用
-//    Eigen::MatrixXd sampleP;
-//    Eigen::VectorXd sampleSDF;
-//    Eigen::VectorXd sampleFunc1;
-//    Eigen::VectorXd sampleFunc2;
-//
-//    sampleP.resize(Tet.rows(), 3);
-//    for (int i = 0; i < Tet.rows(); i++)
-//    {
-//        sampleP.row(i) = ( P.row(Tet(i, 0)) + P.row(Tet(i, 1)) + P.row(Tet(i, 2)) + P.row(Tet(i, 3)) ) / 4.0;
-//    }
-//
-//    // f(x,y,z)
-//    test(sampleP, coef, sampleFunc1);
-//    export_file(sampleP, sampleFunc1, meshname + "func");
-//
-//    get_signed_distance(sampleP, V, F, sampleSDF);
-//    export_file(sampleP, sampleSDF, meshname + "sdf");
-//    export_tet_file(Tet);
-//    export_file(coef);
-
-//    // f(x,y,z)とSDFの差
-//    Eigen::VectorXd diff = (sampleSDF - sampleFunc1).cwiseAbs();
-//    export_file(sampleP, diff, meshname + "diff");
-//
-//    std::cout << "Max diff: " << diff.maxCoeff() << std::endl;
-//    std::cout << "Min diff: " << diff.minCoeff() << std::endl;
-//    std::cout << "Mean diff: " << diff.mean() << std::endl;
-//
-//    std::cout << "P: " << P.rows() << std::endl;
-//    std::cout << "midP: " << midP.rows() << std::endl;
-//    std::cout << "Tet: " << Tet.rows() << std::endl;
